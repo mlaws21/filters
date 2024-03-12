@@ -531,7 +531,7 @@ int main(int argc, char* argv[]) {
         words.push_back(generateRandomString(5)); // Change 8 to desired length of random string
     }
 
-    int r = 10;
+    int r = 5;
     int q = 4;
     int len_filter = (((1lu << q) * (r + 3)) / 64) + 1;
 
