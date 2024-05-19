@@ -82,38 +82,39 @@ def compute_binomial_cmf(n, b, s):
         return math.comb(n, i) * (1/b)**i * (1 - (1/b))**(n-i)
     return 1- sum([inner(x) for x in range(0, s+1)])
 
-REPS = 10000
+REPS = 1000000
 P = 2
    
 def main():
     n = int(sys.argv[1]) # items 
-    s = int(sys.argv[3]) # bin size (i.e threshold)
+    s = int(sys.argv[0]) # bin size (i.e threshold)
     # s = math.floor(math.log(n))
     # b = int(sys.argv[2]) # bins b >= n/s
-    b = math.floor((n / s) * 1.05)
+    # b = math.floor((n / s) * 1.05)
+    b = n
 
     print("n:", n, "b:", b, "s:", s)
     
     
     trials = [place_balls_in_bins(n, b, s) for _ in range(REPS)]
     
-    print("Emperical P(no bucket overflow)",  1 - (sum([1 for x in trials if x > 0]) / REPS))
+    # print("Emperical P(no bucket overflow)",  1 - (sum([1 for x in trials if x > 0]) / REPS))
     print("Emperical P(any given bucket overflows)", st.mean(trials))
     
 
-    trials_p2 = [place_balls_in_bins_p2_theory(n, b, s, p=P) for _ in range(REPS)]
+    # trials_p2 = [place_balls_in_bins_p2_theory(n, b, s, p=P) for _ in range(REPS)]
 
     
-    print("P2 (Theory) Emperical P(no bucket overflow)",  1 - (sum([1 for x in trials_p2 if x > 0]) / REPS))
-    print("P2 (Theory) Emperical P(any given bucket overflows)", st.mean(trials_p2))
+    # print("P2 (Theory) Emperical P(no bucket overflow)",  1 - (sum([1 for x in trials_p2 if x > 0]) / REPS))
+    # print("P2 (Theory) Emperical P(any given bucket overflows)", st.mean(trials_p2))
     
-    trials_p2_practice = [place_balls_in_bins_p2_practice(n, b, s, p=P) for _ in range(REPS)]
+    # trials_p2_practice = [place_balls_in_bins_p2_practice(n, b, s, p=P) for _ in range(REPS)]
 
     
-    print("P2 (Practice) Emperical P(no bucket overflow)",  1 - (sum([1 for x in trials_p2_practice if x > 0]) / REPS))
-    print("P2 (Practice) Emperical P(any given bucket overflows)", st.mean(trials_p2_practice))
+    # print("P2 (Practice) Emperical P(no bucket overflow)",  1 - (sum([1 for x in trials_p2_practice if x > 0]) / REPS))
+    # print("P2 (Practice) Emperical P(any given bucket overflows)", st.mean(trials_p2_practice))
     
-    print("Mathematical P(any given bucket overflows)", compute_binomial_cmf(n,b,s))
+    # print("Mathematical P(any given bucket overflows)", compute_binomial_cmf(n,b,s))
     
     
     # placements = []
